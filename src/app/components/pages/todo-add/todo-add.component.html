@@ -1,0 +1,60 @@
+<div class="container" style="margin: auto; display: block">
+  <form
+    (submit)="onFormSubmit()"
+    [formGroup]="toDoService.toDoForm"
+    autoComplete="off"
+  >
+    <input type="hidden" formControlName="id" />
+    <div class="">
+      <div class="input-group mb-4">
+        <textarea
+          type="text-area"
+          placeholder="Description"
+          class="form-control"
+          formControlName="todo_description"
+        ></textarea>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <select class="form-control" formControlName="todo_priority" required>
+            <option value="">Select priority</option>
+            <option value="low">Low</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <input
+            type="radio"
+            id="completed"
+            name="todo_completed"
+            value="true"
+            formControlName="todo_completed"
+          />
+          <label for="completed" style="margin: 5px">Completed</label>
+          <input
+            type="radio"
+            id="incomplete"
+            name="todo_completed"
+            value="false"
+            formControlName="todo_completed"
+            checked
+          />
+          <label for="incomplete">Incomplete</label>
+        </div>
+      </div>
+
+      <div class="form-group row m-2">
+        <button
+          class="btn btn-primary m-2"
+          [disabled]="!toDoService.toDoForm.valid"
+        >
+          Submit
+        </button>
+        <button class="btn btn-primary m-2" (click)="showList()">Close</button>
+      </div>
+    </div>
+  </form>
+</div>

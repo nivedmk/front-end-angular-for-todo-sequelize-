@@ -1,0 +1,58 @@
+<button class="btn btn-primary" (click)="changeDetail()">Add Todo</button>
+<div class="row">
+  <div class="col-md-7">
+    <h5 style="text-align: center">Incomplete Task</h5>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>To-do Description</th>
+            <th>To-do Priority</th>
+            <th>To-do status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of toDoService.toDoList | filter: 'incomplete'">
+            <td>{{ item.todo_description }}</td>
+            <td>{{ item.todo_priority }}</td>
+            <td>
+              <button (click)="getToDo(item.id)" class="btn">
+                <i
+                  class="fa fa-pencil"
+                  aria-hidden="true"
+                  style="color: #3399ff; margin-right: 5px"
+                ></i>
+              </button>
+              <button (click)="deleteToDo(item.id)" class="btn">
+                <i
+                  class="fa fa-trash"
+                  aria-hidden="true"
+                  style="color: red"
+                ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <h5 style="text-align: center">Completed Task</h5>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>To-do Description</th>
+            <th>To-do Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of toDoService.toDoList | filter: 'completed'">
+            <td>{{ item.todo_description }}</td>
+            <td>{{ item.todo_priority }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
